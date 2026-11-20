@@ -5,7 +5,7 @@ export async function api(path,options={}){
  return r.json();
 }
 export async function download(id,format){
- const r=await fetch('/api/deliveries/'+id+'/download?format='+format,{headers:{Authorization:'Bearer '+session.token}});
+ const r=await fetch('/api/briefings/deliveries/'+id+'/download?format='+format,{headers:{Authorization:'Bearer '+session.token}});
  if(!r.ok)throw new Error('下载失败，请重试');
- const u=URL.createObjectURL(await r.blob()),a=document.createElement('a');a.href=u;a.download='分析归档-'+id+'.'+format;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);
+ const u=URL.createObjectURL(await r.blob()),a=document.createElement('a');a.href=u;a.download='月度核验简报-'+id+'.'+format;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);
 }
